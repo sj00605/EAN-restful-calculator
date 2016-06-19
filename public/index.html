@@ -1,28 +1,33 @@
 
 <!DOCTYPE>
 <html>
+<script   src="//code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
 <script src= "//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 <script src= "app/calculator.js"></script>
 
-<div ng-app="CalculatorApp" ng-controller="CalculatorController">
-
-  <form ng-submit="sendPost()">
-	<p><input type="number" ng-model="a"></p>
-	<p><input type="number" ng-model="b"></p>
-	<p><button type="submit">Calculate</button></p>
-	
-  </form>
-  <label for="operators"> Operator: </label>
-  <select id="operator" ng-model="op">
-		<option ng-repeat="operator in chooseOperator" value="{{operator.name}}">{{operator.name}}</option>
+<div class = "container">
+	<div class="card-panel teal lighten-2" ng-app="CalculatorApp" ng-controller="CalculatorController">
+		<div class="row">
+			<div class="col l6 offset-l3">
+				<form ng-submit="sendPost()">
+					<p><input type="number" ng-model="a"></p>
+					<p><input type="number" ng-model="b"></p>
+					<p><button type="submit">Calculate</button></p>
+				</form>
+				<label for="operators"> Operator: </label>
+				<select id="operator" ng-model="op">
+					<option ng-repeat="operator in chooseOperator" value="{{operator.name}}">{{operator.name}}</option>
 	 
         <!-- <option>+</option>
         <option>*</option>
         <option>-</option>
         <option>/</option> -->
-  </select>
-  <p>{{result}}</p>
-  <p>{{result2}}</p>
-  
- </div>
- </html>
+				</select>
+				<p>{{result}}</p>
+				<p>{{result2}}</p>
+			</div>
+		</div>
+	</div>
+</html>
