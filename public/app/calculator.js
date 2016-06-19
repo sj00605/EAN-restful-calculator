@@ -41,7 +41,7 @@ angular.module('CalculatorApp', [])
 			}
 			
 			if($scope.op === "MUL"){
-			$http.post('/api/calculate/SUB', data)
+			$http.post('/api/calculate/MUL', data)
 				 .then(function (response){
 					 $scope.result2 = response.data;
 				 }, function (response) {
@@ -50,7 +50,7 @@ angular.module('CalculatorApp', [])
 			}
 			
 			if($scope.op === "DIV"){
-			$http.post('/api/calculate/SUB', data)
+			$http.post('/api/calculate/DIV', data)
 				 .then(function (response){
 					 $scope.result2 = response.data;
 				 }, function (response) {

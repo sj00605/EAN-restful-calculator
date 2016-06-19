@@ -53,7 +53,7 @@ router.post('/calculate/DIV', function(req, res, next) {
 	
 	//console.log("Request for addition of " + JSON.stringify(req));
 	res.setHeader('Content-Type', 'application/json');
-	var answer = (parseInt(req.body.a)\parseInt(req.body.b));
+	var answer = (parseInt(req.body.a)/parseInt(req.body.b));
 	res.send(answer.toString());
 	next();
 });
