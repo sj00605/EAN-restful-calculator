@@ -15,8 +15,8 @@ select {display: block};
 		<div class="row">
 			<div class="col l6 offset-l3">
 				<form ng-submit="sendPost()">
-					<p><input type="number" step="any" ng-model="a" ng-minlength="1" required></p>
-					<p><input type="number" step="any" ng-model="b" ng-minlength="1" required></p>
+					<p><input type="number" step=".01" ng-model="a" ng-model-options="{updateOn: 'blur change'}" ng-minlength="1" required></p>
+					<p><input type="number" step=".01" ng-model="b" ng-model-options="{updateOn: 'blur change'}" ng-minlength="1" required></p>
 					<p><button type="submit">Calculate</button></p>
 				</form>
 				<label for="operators"> Operator: </label>
