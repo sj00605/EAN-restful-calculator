@@ -1,0 +1,13 @@
+{
+"name": "ReST-API",
+"version": "1.0.0",
+"description": "A simple RESTFul API craeted using nodejs that talk to Mongodb database",
+"main": "index.js",
+"author": "codenx",
+"license": "ISC",
+"dependencies": {
+"body-parser": "^1.9.0",
+"express": "^4.12.4",
+"node-restful": "^0.1.17"
+}
+}

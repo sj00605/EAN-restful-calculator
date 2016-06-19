@@ -1,0 +1,28 @@
+
+<!DOCTYPE>
+<html>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src= "app/calculator.js"></script>
+
+<div ng-app="CalculatorApp" ng-controller="CalculatorController">
+
+  <form ng-submit="sendPost()">
+	<p><input type="number" ng-model="a"></p>
+	<p><input type="number" ng-model="b"></p>
+	<p><button type="submit">Calculate</button></p>
+	
+  </form>
+  <label for="operators"> Operator: </label>
+  <select id="operator" ng-model="op">
+		<option ng-repeat="operator in chooseOperator" value="{{operator.name}}">{{operator.name}}</option>
+	 
+        <!-- <option>+</option>
+        <option>*</option>
+        <option>-</option>
+        <option>/</option> -->
+  </select>
+  <p>{{result}}</p>
+  <p>{{result2}}</p>
+  
+ </div>
+ </html>
