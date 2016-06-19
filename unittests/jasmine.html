@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+		<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+		<script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+
+		angular.module('CalculatorApp', [])
+    .controller('CalculatorController', function($scope, $http) {
+		
+		 
+		 $http.get('/api/operators')
+			.then(function(response) {
+				//First function handles success
+				//$scope.result = response.data;
+				$scope.chooseOperator = response.data;
+			}, function(response) {
+				//Second function handles error
+				$scope.result = "Something went wrong";
+			});
+			
+			
+		 $scope.sendPost = function() {
+			
+			var data = JSON.stringify({
+					"a": $scope.a,
+					"b": $scope.b
+				});
+				
+			if($scope.op === "ADD"){
+			$http.post('/api/calculate/ADD', data)
+				 .then(function (response){
+					 $scope.result2 = response.data.toFixed(2);
+					 console.log(response.data);
+				 }, function (response) {
+					 $scope.result2 = "Client error ADD";
+				 });
+			}
+			
+			if($scope.op === "SUB"){
+			$http.post('/api/calculate/SUB', data)
+				 .then(function (response){
+					 $scope.result2 = response.data;
+				 }, function (response) {
+					 $scope.result2 = "Client error SUB";
+				 });
+			}
+			
+			if($scope.op === "MUL"){
+			$http.post('/api/calculate/MUL', data)
+				 .then(function (response){
+					 $scope.result2 = response.toFixed(2);
+				 }, function (response) {
+					 $scope.result2 = "Client error MUL";
+				 });
+			}
+			
+			if($scope.op === "DIV"){
+			$http.post('/api/calculate/DIV', data)
+				 .then(function (response){
+					 $scope.result2 = response.data;
+				 }, function (response) {
+					 $scope.result2 = "Client error DIV";
+				 });
+			}
+
+		}               
+	
+    });
+	
+	describe('HTTPGETOperators', function(){
+	var $httpBackend, operatorJSON, createController;
+	
+	beforeEach(angular.mock.module('CalculatorApp'));
+	
+	beforeEach(angular.mock.inject(function($injector) {
+		
+		 $httpBackend = $injector.get('$httpBackend');
+		 
+		 operatorJSON = $httpBackend.when('GET', '/api/operators')
+                            .respond(
+							{
+								"id": "1",
+								"name": "ADD"
+							}, {
+								"id": "2",
+								"name": "SUB"
+							}, {
+								"id": "3",
+								"name": "MUL"
+							}, {
+								"id": "4",
+								"name": "DIV"
+							});
+							
+		
+		// Get hold of a scope (i.e. the root scope)
+		$rootScope = $injector.get('$rootScope');
+		// The $controller service is used to create instances of controllers
+		var $controller = $injector.get('$controller');
+		
+		createController = function() {
+        return $controller('CalculatorController', {'$scope' : $rootScope });
+		};
+	}));
+	
+	afterEach(function() {
+		$httpBackend.verifyNoOutstandingExpectation();
+		$httpBackend.verifyNoOutstandingRequest();
+    });
+	
+	it('should fetch JSON operators', function() {
+		$httpBackend.expectGET('/api/operators');
+		var controller = createController();
+		$httpBackend.flush();
+	});
+	
+	it('should fail authentication', function() {
+
+		// Notice how you can change the response even after it was set
+		operatorJSON.respond(401, '');
+
+		$httpBackend.expectGET('/api/operators');
+		var controller = createController();
+		$httpBackend.flush();
+		expect($rootScope.result).toBe('Something went wrong');
+   });
+
+});
+	</script>
+	
+</html>
