@@ -14,7 +14,8 @@ angular.module('CalculatorApp', [])
 				$scope.result = "Something went wrong";
 			});
 			
-		$scope.sendPost = function() {
+			
+		 $scope.sendPost = function() {
 			
 			var data = JSON.stringify({
 					"a": $scope.a,
@@ -24,7 +25,7 @@ angular.module('CalculatorApp', [])
 			if($scope.op === "ADD"){
 			$http.post('/api/calculate/ADD', data)
 				 .then(function (response){
-					 $scope.result2 = response.data;
+					 $scope.result2 = response.data.toFixed(2);
 					 console.log(response.data);
 				 }, function (response) {
 					 $scope.result2 = "Client error ADD";
@@ -43,7 +44,7 @@ angular.module('CalculatorApp', [])
 			if($scope.op === "MUL"){
 			$http.post('/api/calculate/MUL', data)
 				 .then(function (response){
-					 $scope.result2 = response.data;
+					 $scope.result2 = response.toFixed(2);
 				 }, function (response) {
 					 $scope.result2 = "Client error MUL";
 				 });
@@ -57,12 +58,8 @@ angular.module('CalculatorApp', [])
 					 $scope.result2 = "Client error DIV";
 				 });
 			}
-			
-			
-			
-			
-			
-		}                 
+
+		}               
 		
 		//var inputs = {};
 		
