@@ -16,7 +16,6 @@ angular.module('CalculatorApp', [])
 			
 		$scope.sendPost = function() {
 			
-			$scope.result = $scope.op;
 			var data = JSON.stringify({
 					"a": $scope.a,
 					"b": $scope.b
@@ -26,6 +25,7 @@ angular.module('CalculatorApp', [])
 			$http.post('/api/calculate/ADD', data)
 				 .then(function (response){
 					 $scope.result2 = response.data;
+					 console.log(response.data);
 				 }, function (response) {
 					 $scope.result2 = "Client error ADD";
 				 });
