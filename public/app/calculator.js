@@ -44,7 +44,7 @@ angular.module('CalculatorApp', [])
 			if($scope.op === "MUL"){
 			$http.post('/api/calculate/MUL', data)
 				 .then(function (response){
-					 $scope.result2 = response.toFixed(2);
+					 $scope.result2 = response.data.toFixed(2);
 				 }, function (response) {
 					 $scope.result2 = "Client error MUL";
 				 });
