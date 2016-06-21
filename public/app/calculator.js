@@ -35,7 +35,7 @@ angular.module('CalculatorApp', [])
 			if($scope.op === "SUB"){
 			$http.post('/api/calculate/SUB', data)
 				 .then(function (response){
-					 $scope.result2 = response.data;
+					 $scope.result2 = response.data.toFixed(2);
 				 }, function (response) {
 					 $scope.result2 = "Client error SUB";
 				 });
@@ -53,7 +53,7 @@ angular.module('CalculatorApp', [])
 			if($scope.op === "DIV"){
 			$http.post('/api/calculate/DIV', data)
 				 .then(function (response){
-					 $scope.result2 = response.data;
+					 $scope.result2 = response.data.toFixed(2);
 				 }, function (response) {
 					 $scope.result2 = "Client error DIV";
 				 });
