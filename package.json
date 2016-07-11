@@ -1,12 +1,28 @@
 {
-"name": "ReST-API",
-"version": "1.0.0",
-"description": "A simple RESTFul API craeted using nodejs that talk to Mongodb database",
-"main": "index.js",
-"author": "codenx",
-"license": "ISC",
-"dependencies": {
-"body-parser": "^1.9.0",
-"express": "^4.12.4"
-}
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "A simple RESTFul API craeted using nodejs that talk to Mongodb database",
+  "main": "index.js",
+  "author": "codenx",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "^4.12.4"
+  },
+  "devDependencies": {
+    "angular": "^1.5.7",
+    "angular-mocks": "^1.5.7",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sj00605/EAN-restful-calculator/"
+  }
 }
